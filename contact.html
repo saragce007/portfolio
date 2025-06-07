@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>S.P. Sariga - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Playfair Display', serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #f3e8ff, #ffffff);
+      color: #3e2a60;
+      line-height: 1.7;
+    }
+
+    header {
+      background-color: #e0d4f7;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #5e4b8b;
+      padding: 0 3rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: #5e4b8b;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.6rem;
+      transition: color 0.3s ease;
+      font-size: 1.3rem;
+    }
+
+    nav a:hover {
+      color: hwb(275 2% 42% / 0.77);
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.5rem;
+      color: #5e4b8b;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 3rem 1.5rem;
+    }
+
+    h2 {
+      color: #5e4b8b;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-direction: row-reverse;
+    }
+
+    .about-content {
+      max-width: 800px;
+      color: #4c3a6e;
+      text-align: left;
+      padding: 0 3rem;
+    }
+
+    .about-content ul {
+      padding-left: 1.2rem;
+    }
+
+    .about-content li {
+      margin-bottom: 1rem;
+    }
+
+    .about-buttons {
+      margin-top: 1rem;
+      
+    }
+
+    .about-buttons a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      background-color: #a084ca;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .about-buttons a:hover {
+      background-color: hwb(275 2% 42% / 0.77);
+    }
+
+    .about-img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(158, 118, 188, 0.3);
+    }
+
+    .card-container {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+    }
+
+    .card-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background-color: #faf7ff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(158, 118, 188, 0.15);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.4s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3, .card p, .card i {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card:hover h3, .card:hover p {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #a084ca;
+    }
+
+    .project-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #a084ca;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .project-btn:hover {
+      background-color: #5e4b8b;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to right, #f8efff, #faf7ff);
+    }
+
+    .contact-form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(94, 75, 139, 0.1);
+    }
+
+    .contact-form-wrapper form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group input, textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    button {
+      background-color: #a283d7;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #5e4b8b;
+    }
+
+    footer {
+      background-color: #e0d4f7;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: #5e4b8b;
+    }
+
+    footer a {
+      color: #5e4b8b;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #e0d4f7;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .about-section {
+        flex-direction: column;
+      }
+
+      .about-img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SARIGA S P</h1>
+    <i class="fas fa-bars menu-icon" onclick="document.querySelector('nav').classList.toggle('show')"></i>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Tech Skills</a>
+      <a href="#soft-skills">Soft Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <div class="about-section">
+      <div class="about-content">
+        <h2>About Me</h2>
+        <ul>
+          <li>Passionate and self-motivated Software Developer with a strong foundation in web development, object-oriented programming, and full-stack development.</li>
+          <li>Proficient in HTML, CSS, JavaScript and with a working knowledge of Python, Java, and SQL.</li>
+          <li>Completed internships and projects using Git, Figma, UI/UX principles.</li>
+          <li>Quick learner with strong communication skills, dedicated to building scalable apps.</li>
+        </ul>
+        <div class="about-buttons">
+          <a href="resume .pdf" download="resume.pdf"> Resume</a>
+          <a href="https://github.com/saragce007" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/sarigasemmalai" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:sarigasemmalai@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <img class="about-img" src="photo.jpg" alt="Sariga's Photo">
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="card-container">
+      <div class="card"><i class="fas fa-code"></i><p><b>FRONTEND </b><br>HTML, CSS, JavaScript, Bootstrap</p></div>
+      <div class="card"><i class="fas fa-terminal"></i><p><b>LANGUAGES</b><br>Python, Java, SQL</p></div>
+      <div class="card"><i class="fas fa-paint-brush"></i><p><b>TOOLS</b><br>Figma,Git, GitHub, MsExcel</p></div>
+      <div class="card"><i class=""></i><p><b>AREA OF INTREST</b><br>Web Development, UI/UX Designing,Testing,Human Resource</p></div>
+
+    </div>
+  </section>
+
+  <section id="soft-skills">
+    <h2>Soft Skills</h2>
+    <div class="card-container">
+      <div class="card"><i class="fas fa-comments"></i><p>Communication & Presentation</p></div>
+      <div class="card"><i class="fas fa-clock"></i><p>Time Management</p></div>
+      <div class="card"><i class="fas fa-users"></i><p>Team Collaboration & Leadership</p></div>
+      <div class="card"><i class="fas fa-lightbulb"></i><p>Critical Thinking</p></div>
+      <div class="card"><i class="fas fa-brain"></i><p>Adaptability</p></div>
+      <div class="card"><i class="fas fa-handshake"></i><p>Problem Solving</p></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Online Movie Ticket Booking</h3>
+        <p>Responsive ticket booking interface with seat selection, movie filters, and booking confirmation.</p>
+        <a href="https://github.com/saragce007/frontend-movie-ticket-booking" target="_blank" class="project-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Attendance Tracking with KNN</h3>
+        <p>Facial recognition system using OpenCV and KNN for accurate attendance automation.</p>
+        <a href="https://github.com/saragce007/face-recognition-system" target="_blank" class="project-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Smart Shopping Cart Integrated With INVENZA</h3>
+        <p>Automated billing, inventory dashboard, and LCD mall map for a smarter retail experience</p>
+        <a href="https://github.com/saragce007/smartshoppingcart.git" target="_blank" class="project-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Air Quality Prediction</h3>
+        <p>Air quality prediction using machine learning is a project that aims to provide accurate and reliable
+predictions of air quality in different regions</p>
+        <a href="https://github.com/saragce007/air_quality" target="_blank" class="project-btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="card-container">
+      <div class="card"><img src="frontend.jpeg" alt="Certificate 1"><p>Frontend - SmartCliff Pvt Ltd</p></div>
+      <div class="card"><img src="BC.png" alt="Certificate 2"><p>Blockchain - NSE Academy</p></div>
+      <div class="card"><img src="DA.png" alt="Certificate 3"><p>Data Analytics - Novitech Pvt Ltd</p></div>
+      <div class="card"><img src="AAD.png" alt="Certificate 4"><p>App Development - Internshala</p></div>
+      <div class="card"><img src="ca.png" alt="Certificate 4"><p>Campus Ambassador - Skill Intern</p></div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-form-wrapper">
+      <h2>Contact Me</h2>
+      <form action="https://formsubmit.co/sarigasemmalai@gmail.com" method="POST">
+        <div class="input-group">
+          <input type="text" name="name" placeholder="Your Name" required><br><BR>
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>📧 sarigasemmalai@gmail.com | 📞 +91 9342911205</p>
+    <p>
+      <a href="https://github.com/saragce007" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/sarigasemmalai" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:sarigasemmalai@gmail.com"><i class="fas fa-envelope"></i></a>
+    </p>
+  </footer>
+</body>
+</html>
